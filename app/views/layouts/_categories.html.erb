@@ -1,3 +1,6 @@
+
+<!-- Catgories Partial Rendered in HomePage -->
+
 <h1 style="text-align:center;">Welcome to JerseyTro</h1>
 <br>
 <h2 style="text-align:center;">The Home of Retro Football Jerseys</h2>
@@ -5,7 +8,10 @@
 
 <div class="row" style="text-align:center;">
   
+<!-- Alert box on homepage -->
   <%= render "/shared/alerts" %>
+
+
   <% @categories.each do |category| %>
     <div class="col-md-6">
       <p><a href="/category/<%= category.title %>" class="button"><%= category.title %></a></p>

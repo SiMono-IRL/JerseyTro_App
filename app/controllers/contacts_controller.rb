@@ -8,7 +8,7 @@ class ContactsController < InheritedResources::Base
     respond_to do |format|
       if @contact.save
         format.html { 
-          flash[:notice] =  "Contact was successfully created." 
+          flash[:notice] =  "Thanks for Reaching out! We'll be in touch soon." 
           redirect_to root_path
         }
       else

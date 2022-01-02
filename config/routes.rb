@@ -29,8 +29,6 @@ Rails.application.routes.draw do
 
   get '/cart/:id', to: 'cart#add'
   
-
-  
   get '/cart/remove/:id' => 'cart#remove'
 
   get '/cart/increase/:id' => 'cart#increase'
