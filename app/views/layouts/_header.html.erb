@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+ 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <%= link_to "JerseyTro",root_path,:class=>"navbar-brand" %>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navb">
+    <%=render 'layouts/search'%>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <li><%= link_to "Home", root_path,:class=>"nav-link" %></li>
+      </li>
+      <li class="nav-item">
+        <li><%= link_to "About", about_path,:class=>"nav-link" %></li>
+      </li>
+      <li class="nav-item">
+        <li><%= link_to "Help", new_contact_path,:class=>"nav-link" %></li>
+      </li>
+      <li class="nav-item">
+        <li><%= link_to "Cart", cart_path,:class=>"nav-link" %></li>
+      </li>
+      <li class="nav-item">
+        <li><%= link_to "Items", items_path,:class=>"nav-link" %></li>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to 'Edit Profile', edit_user_registration_path,:class=>"nav-link" %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete,:class=>"nav-link" %></li>
+      <% else %>
+        <li>
+          <%= link_to new_user_registration_path,:class=>"nav-link" do %>
+            <span class="glyphicon glyphicon-user"></span> Register
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_session_path,:class=>"nav-link" do %>
+            <span class="glyphicon glyphicon-log-in"></span> Sign in
+          <% end %>
+        </li>
+      <% end %>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

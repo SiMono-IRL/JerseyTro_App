@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<p id="notice"><%= notice %></p>
+
+<% if @cart.empty? %>
+<div class="container" style="text-align: center;">
+  <h1>Your cart is empty</h1>
+
+  <p style="margin-top: 20px;">
+    <a href="/items" class="btn btn-default width200"><i class="fa fa-shopping-cart"></i> Continue Shopping</a>
+  </p>
+</div>
+
+<%end%>
+
+<% if @cart.present? %>
+<div class="container">
+  <div class="row">
+      <div class="col-sm-12 col-md-12">
+      	<h2>List of all Items</h2>
+          <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th class="text-center">Price</th>
+                      <th class="text-center">Total</th>
+                      <th> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                	<% total = 0 %>
+                	<% quantity = 1 %>
+  					    	<% @cart.each do |id, index| %>
+  					    		<% item = Item.find_by_id(id) %>
+  					    		<% total += quantity * item.price %>
+                    <tr>
+                      <td class="col-sm-8 col-md-5">
+                        <div class="media">
+                            <%= link_to (image_tag item.image_url, :style =>"width:72px",:class=>"media-object"),item,:class=>"thumbnail pull-left" %>
+                            <div class="media-body">
+                                <h4 class="media-heading"><%= link_to item.title, item %></h4>
+                                <h5 class="media-heading"> by <%= item.brand %></h5>
+                            </div>
+                        </div>
+                     	</td>
+                      <td class="col-sm-1 col-md-1" style="text-align: center">
+                      	<%= quantity %>
+                      </td>
+                      <td class="col-sm-1 col-md-1 text-center"><strong><%= number_to_currency(item.price, :unit =>"€") %></strong></td>
+                      <td class="col-sm-1 col-md-2 text-center"><strong><%= number_to_currency(quantity * item.price, :unit =>"€") %></strong></td>
+                      <td class="col-sm-1 col-md-2">
+                      	<a href="/cart/decrease/<%= item.id %>" class="btn btn-danger"><span class="fa fa-remove"></span> Remove</a></td>
+                    	</td>
+                    </tr>
+                  <% end %>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h5>Subtotal</h5></td>
+                      <td class="text-right"><h5><strong><%= number_to_currency(total, :unit => "€") %></strong></h5></td>
+                  </tr>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h5>Estimated shipping</h5></td>
+                      <td class="text-right"><h5><strong>€30</strong></h5></td>
+                  </tr>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h3>Total</h3></td>
+                      <td class="text-right"><h3><strong><%= number_to_currency(total+30, :unit => "€") %></strong></h3></td>
+                  </tr>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td> <a href="/cart/clear" class="btn btn-danger width150">Clear Cart</a> </td>
+                      <td>
+                      	<a href="/items" class="btn btn-default width200"><i class="fa fa-shopping-cart"></i> Continue Shopping</a>
+                      </td>
+                      <td>
+                      	<a href="/checkout" class="btn btn-success">Checkout <i class="fa fa-play"></i></a>
+                      </td>
+                  </tr>
+                  
+                </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>
+<%end%>

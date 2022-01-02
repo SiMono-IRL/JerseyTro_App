@@ -1,0 +1,6 @@
+<%= form_tag("/search", :method => "post",class: 'form-inline my-2 my-lg-0') do %>
+  <%= text_field_tag :q,nil,:class=>"form-control mr-sm-2 search",:placeholder=>"Search" %>
+  <%= submit_tag "Search",:class=>"btn btn-success my-2 my-sm-0" %>
+<% end %>
+    
+    

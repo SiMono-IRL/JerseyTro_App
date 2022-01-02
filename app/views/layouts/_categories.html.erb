@@ -1,0 +1,18 @@
+<h1 style="text-align:center;">Welcome to JerseyTro</h1>
+<br>
+<h2 style="text-align:center;">Categories</h2>
+<br>
+
+<div class="row" style="text-align:center;">
+  
+  <%= render "/shared/alerts" %>
+  <% @categories.each do |category| %>
+    <div class="col-md-4">
+      <p><a href="/category/<%= category.title %>" class="button"><%= category.title %></a></p>
+      <div class="category_images"><%= link_to (image_tag category.image, :class=>"itemholsIm"), category_title_path(category.title) %></div>
+      <p><%= category.description %></p>
+    </div>
+  <% end %>
+</div>
+
+ 

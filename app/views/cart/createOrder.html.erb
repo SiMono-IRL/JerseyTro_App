@@ -1,0 +1,162 @@
+
+
+                <% quantity = 1 %>
+                <% total = 0 %>
+                <% @orderitems.each do |id,index| %>
+                  <% item = Orderitem.find_by_id(id) %>
+                  <% total += quantity * item.price %>
+                  
+                <% end %>
+                 
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+
+.payments input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.payments label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.payments .icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.payments .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.payments .btn:hover {
+  background-color: #45a049;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+
+<h1 style="margin: 60px 0;">You are just one step away from placing an Order.</h1>
+<div class="row payments">
+  <div class="col-75">
+    <div class="container">
+      <% if flash[:order_error_message] %>
+        <div class="cc-order-message cc-order-message__error"><%= flash[:order_error_message] %></div>
+      <% end %>
+      <%= form_tag '/payment', id: "billing-create-payment-method",method: :post do  %>
+        <%= hidden_field_tag 'order_id', @order.id  %>
+        <%= hidden_field_tag 'total', (total+30)*100  %>
+        
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <h3>Billing Address</h3>
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <%= text_field_tag 'name'  %>
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <%= text_field_tag 'email',@current_user.email  %>
+            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+            <%= text_field_tag 'address'  %>
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <%= text_field_tag 'city'  %>
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">State</label>
+                <%= text_field_tag 'name',nil,:placeholder=>"NY"  %>
+              </div>
+              <div class="col-50">
+                <label for="zip">Zip</label>
+                <%= text_field_tag 'zip',nil,:placeholder=>'10001'  %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Total Payment"
+          data-amount=<%= (total+30)*100 %>
+          data-locale="auto" data-currency='EUR'></script>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="col-25">
+    <div class="container">
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><%= @orderitems.size %></b></span></h4>
+      <% @orderitems.each do |id,index| %>
+        <% item = Orderitem.find_by_id(id) %>
+        <p><%= item.title %><span class="price"><%= number_to_currency(1 * item.price, :unit =>"€") %></span></p>
+      <% end %>
+      
+      <hr>
+      <p>Subtotal <span class="price" style="color:black"><b><%= number_to_currency(total, :unit => "€") %></b></span></p>
+      <p>Shipping <span class="price" style="color:black"><b>€30</b></span></p>
+      <p>Total <span class="price" style="color:black"><b><%= number_to_currency(total+30, :unit => "€") %></b></span></p>
+    </div>
+  </div>
+</div>

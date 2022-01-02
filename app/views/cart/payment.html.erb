@@ -1,0 +1,211 @@
+<style>
+    .cc-shipping-card-layout {
+    background: #7d614a image-url('wood-background-pattern.jpg');
+}
+
+.cc-shipping-card-layout .cc-footer {
+    background: transparent;
+}
+
+.cc-shipping-card-layout .cc-footer_copyright,
+.cc-shipping-card-layout .cc-footer__info-links a {
+    color: rgba($color-white, 0.7);
+}
+
+.cc-shipping-card {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.cc-shipping-card__top {
+    position: relative;
+    background: image-url('shipping-card/center-top.png') no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    padding-top: 24.35%;
+
+    @media (min-width: $breakpoint-small) {
+        background-size: auto;
+        height: 187px;
+    }
+}
+
+.cc-shipping-card__top:before {
+    background: image-url('shipping-card/left-top.png') no-repeat;
+    width: 59px;
+    height: 140px;
+    position: absolute;
+    left: -59px;
+    bottom: 0;
+
+    @media (min-width: $breakpoint-small) {
+        content: '';
+        display: block;
+    }
+}
+
+.cc-shipping-card__top:after {
+    background: image-url('shipping-card/right-top.png') no-repeat;
+    width: 59px;
+    height: 142px;
+    position: absolute;
+    right: -59px;
+    bottom: 0;
+
+    @media (min-width: $breakpoint-small) {
+        content: '';
+        display: block;
+    }
+}
+
+.cc-shipping-card__content {
+    background: $color-white image-url('shipping-card/paper-background-pattern.png');
+    position: relative;
+
+    @media (min-width: $breakpoint-small) {
+        margin-right: -20px;
+        padding-right: 30px;
+    }
+}
+
+.cc-shipping-card__content:before {
+    background: image-url('shipping-card/left.png') no-repeat;
+    background-size: 100% 100%;
+    width: 59px;
+    position: absolute;
+    left: -59px;
+    bottom: 0;
+    top: 0;
+
+    @media (min-width: $breakpoint-small) {
+        content: '';
+        display: block;
+    }
+}
+
+.cc-shipping-card__content:after {
+    background: image-url('shipping-card/right.png') no-repeat;
+    background-size: 100% 100%;
+    width: 53px;
+    position: absolute;
+    right: -33px;
+    bottom: 0;
+    top: 0;
+
+    @media (min-width: $breakpoint-small) {
+        content: '';
+        display: block;
+    }
+}
+
+.cc-shipping-card__bottom {
+    max-width: 768px;
+    height: 189px;
+    background: image-url('shipping-card/bottom.png') no-repeat;
+    position: relative;
+}
+
+.cc-shipping-card__bottom:before {
+    background: image-url('shipping-card/bottom-left.png') no-repeat;
+    background-size: 100% 100%;
+    width: 62px;
+    height: 104px;
+    position: absolute;
+    left: -59px;
+
+    @media (min-width: $breakpoint-small) {
+        content: '';
+        display: block;
+    }
+}
+
+.cc-shipping-card__bottom:after {
+    background: image-url('shipping-card/bottom-right.png') no-repeat;
+    background-size: 100% 100%;
+    width: 53px;
+    height: 105px;
+    position: absolute;
+    right: -53px;
+
+    @media (min-width: $breakpoint-small) {
+        content: '';
+        display: block;
+    }
+}
+
+.cc-shipping-card__submit,
+.cc-shipping-card__agree {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cc-shipping-card__agree-error {
+    text-align: center;
+    color: $color-red;
+    margin-top: 10px;
+}
+
+.cc-shipping-card-header {
+    margin-left: 18px;
+}
+
+.cc-order-message {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px 10px;
+    background: #ccc;
+}
+
+.cc-order-message.cc-order-message__error {
+    background: $color-red;
+    color: #fff;
+}
+
+.cc-faq {
+    background: #ccc;
+    margin-bottom: 10px;
+    margin-left: 20px;
+
+    a {
+        display: block;
+        padding: 7px 10px;
+        color: $color-text;
+        cursor: pointer;
+        font-weight: 700;
+
+        &:before {
+            content: '+';
+            width: 15px;
+            display: inline-block;
+            text-align: center;
+            margin-right: 5px;
+        }
+    }
+
+    &.is-open a:before {
+        content: '-';
+    }
+}
+
+.cc-faq__answer {
+    display: none;
+
+    .is-open & {
+        display: block;
+        padding: 5px 10px 10px;
+    }
+}
+
+</style>
+<div class="cc-shipping-card">
+    <div class="cc-shipping-card__top"></div>
+    <div class="cc-shipping-card__content">
+        <h1 class="cc-header-large cc-header-center">Thanks for your order!</h1>
+
+        <div class="cc-shipping-card-details">
+            We'll get started packing your order. 
+        </div>
+        <div class="cc-shipping-card__submit"><span class="cc-btn-shadow"></span></div>
+    </div>
+    <div class="cc-shipping-card__bottom"></div>
+</div>

@@ -1,0 +1,34 @@
+<h2>You Searched Our Product Catalog For <%= @search_term %></h2>
+<br>
+<% if @items.length == 0  %>
+<br />
+<h2>No products were found to match your search</h2>
+<% end %>
+
+
+<div class="row itemsContainer">
+  <% @items.each do |item| %>
+    <div class="col-md-4 col-sm-12 mgb20">
+      <h2 class="items_title"><a href="/items/<%= item.id %>" class="button"><%= item.title %></a></h2>
+      <div class="category_images"><%= link_to (image_tag item.image_url, :class=>"itemholsIm"), item %></div>
+      <p><%= item.description %></p>
+      <div class="row mgb20">
+        <div class="col-md-4"><b><%= number_to_currency(item.price, :unit => "€") %></b></div>
+        <div class="col-md-4"><i class="fa fa-list-alt" aria-hidden="true"></i> <b><%= item.category %></b></div>
+        <div class="col-md-4"><i class="fa fa-wpforms"></i> <b><%= item.brand %></b></div>
+      </div>
+
+      <div class="row mgb20">
+        <div class="col-md-4">
+             
+        </div>
+        <div class="col-md-4"><a href="/cart/<%= item.id %>" class="full center btn btn-success width150">Add To Cart</a></div>
+        <div class="col-md-4">
+            
+        </div>
+      </div>
+
+      <hr>
+    </div>
+  <% end %>
+</div>

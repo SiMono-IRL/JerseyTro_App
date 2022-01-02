@@ -1,0 +1,186 @@
+<style>
+  .login-logo,
+.register-logo {
+  font-size: 35px;
+    text-align: center;
+    font-weight: 300;
+    background: #ff8901;
+    padding-bottom: 12px;
+}
+.login-logo a, .register-logo a,.login-logo span, .register-logo span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.login-page,.register-page {
+  background: #eeeeee;
+}
+
+.login-box,.register-box {
+  width: 460px;
+  margin: 100px auto;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 12%);
+}
+.login_btn{
+  background: #ff8901;
+}
+@media (max-width: @screen-sm) {
+  .login-box,.register-box {
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+.login-box-body,.register-box-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+  .form-control-feedback {
+    color: #777;
+  }
+}
+.login-box-msg,.register-box-msg {
+  margin: 0;
+  text-align: center;
+  padding: 0 20px 20px 20px;
+}
+.social-auth-links {
+  margin: 10px 0;
+}
+
+.login-box-footer {
+  padding: 24px 0 12px 0;
+  margin-top: 24px;
+  border-top: 1px solid @md-grey-100;
+}
+.has-feedback{
+  position: relative;
+}
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 38.8px;
+    height: 38.8px;
+    line-height: 38.8px;
+    text-align: center;
+    pointer-events: none;
+}
+
+
+.radio, .checkbox {
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* iCheck plugin Square skin, blue
+----------------------------------- */
+.icheckbox_square-blue,
+.iradio_square-blue {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url(blue.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_square-blue {
+    background-position: 0 0;
+}
+    .icheckbox_square-blue.hover {
+        background-position: -24px 0;
+    }
+    .icheckbox_square-blue.checked {
+        background-position: -48px 0;
+    }
+    .icheckbox_square-blue.disabled {
+        background-position: -72px 0;
+        cursor: default;
+    }
+    .icheckbox_square-blue.checked.disabled {
+        background-position: -96px 0;
+    }
+
+.iradio_square-blue {
+    background-position: -120px 0;
+}
+    .iradio_square-blue.hover {
+        background-position: -144px 0;
+    }
+    .iradio_square-blue.checked {
+        background-position: -168px 0;
+    }
+    .iradio_square-blue.disabled {
+        background-position: -192px 0;
+        cursor: default;
+    }
+    .iradio_square-blue.checked.disabled {
+        background-position: -216px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_square-blue,
+    .iradio_square-blue {
+        background-image: url(blue@2x.png);
+        -webkit-background-size: 240px 24px;
+        background-size: 240px 24px;
+    }
+}
+
+</style>
+
+<div class="login-box">
+  <div class="login-logo">
+    <span>Login</span>
+  </div><!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to continue</p>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "/shared/alerts" %>
+      <div class="form-group has-feedback">
+        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control", style: "margin-bottom: 15px;border-radius: 0 !important;" %>
+        <span class="fa fa-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <%= f.password_field :password, placeholder: "Password", class: "form-control", style: "margin-bottom: 15px;border-radius: 0 !important;"  %>
+        <span class="fa fa-lock form-control-feedback"></span>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="checkbox icheck">
+            <label>
+              <label>
+                <%= f.check_box :remember_me %> Remember Me
+              </label>
+            </label>
+          </div>
+        </div><!-- /.col -->
+        <div class="col-sm-4">
+          <%= f.submit "Log in", class: "btn btn-block login_btn" %>
+        </div><!-- /.col -->
+      </div>
+    <% end %>
+
+    <div class="login-box-footer text-center">
+      <%= link_to "Sign up", new_registration_path(resource_name) %><br>
+      <%= link_to "Forgot password?", new_password_path(resource_name) %>
+    </div>
+
+  </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->

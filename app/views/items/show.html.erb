@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<p id="notice"><%= notice %></p>
+
+<div id="itemsContainer" style="text-align: center;">
+  <h1><%= @item.title %></h1>
+  <%= image_tag @item.image_url, :class => 'welcomIm'  %>
+  <h2><%= @item.description %></h1>
+
+  <div class="itemhols">
+    <p>Price: <b><%= number_to_currency(@item.price, :unit => "€") %></b>
+    <br>
+        Category: <i class="fa fa-list-alt" aria-hidden="true"></i> <b><%= @item.category %></b>
+    <br>
+        Brand: <i class="fa fa-wpforms"></i> <b><%= @item.brand %></b></p>
+  </div>
+
+  <div class="row mgb20">
+        <div class="col-md-4">
+             
+        </div>
+        <div class="col-md-4"><a href="/cart/<%= @item.id %>" class="full center btn btn-success">Add To Cart</a></div>
+        <div class="col-md-4">
+            
+        </div>
+      </div>
+</div>
