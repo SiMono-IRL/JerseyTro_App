@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@activeadmin/activeadmin": "^2.9.0",
+    "@babel/plugin-proposal-private-methods": "^7.16.7",
     "@popperjs/core": "^2.11.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
